@@ -1,0 +1,7 @@
+### Instruction:
+Summarize the text below in two sentences.
+
+### Input:
+The quick brown fox jumps over the lazy dog. The dog was sleeping, so it did not notice the fox.
+
+### Response:
