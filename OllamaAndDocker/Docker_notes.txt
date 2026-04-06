@@ -1,0 +1,28 @@
+DOCKER ->> Docker is a software platform that allows you to package an application and everything it needs to run—like code, libraries, and settings—into a single, standardized unit called a container
+
+
+IMAGES :
+An image is
+
+A pre-built package
+Contains:
+Code
+Libraries
+Dependencies
+OS setup
+👉 It does NOT run by itself
+
+CONTAINER:
+A container is:
+
+A running instance of an image
+It actually executes your app
+
+👉 When you run an image → it becomes a container
+
+
+PULL DOCKER CONTAINER 
+>> docker pull docker/welcome-to-docker
+
+RUN DOCKER CONTAINER
+>> docker run docker/welcome-to-docker
