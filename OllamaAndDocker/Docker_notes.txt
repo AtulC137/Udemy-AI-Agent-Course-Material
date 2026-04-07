@@ -26,3 +26,10 @@ PULL DOCKER CONTAINER
 
 RUN DOCKER CONTAINER
 >> docker run docker/welcome-to-docker
+
+RUNNING OLLAMA AS A IMAGE OF DOCKER
+>> start docker desktop
+>> in cmd put 
+    >> docker run ollama/ollama
+    this will pull and run ollama from docker hub
+    
