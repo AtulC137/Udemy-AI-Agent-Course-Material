@@ -1,0 +1,8 @@
+PULL DOCKER IMAGE FOR OPENWEBUI
+>> docker pull ghcr.io/open-webui/open-webui:v0.8.3
+
+THEN RUN IT 
+>> docker run -d -p 3000:8080 -v open-webui:/app/backend/data \
+  -e WEBUI_SECRET_KEY="your-secret-key" \
+  --name open-webui --restart always \
+  ghcr.io/open-webui/open-webui:v0.8.3

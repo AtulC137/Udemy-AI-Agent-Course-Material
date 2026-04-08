@@ -32,4 +32,5 @@ RUNNING OLLAMA AS A IMAGE OF DOCKER
 >> in cmd put 
     >> docker run ollama/ollama
     this will pull and run ollama from docker hub
-    
+>> run command to expose port to ollama 
+    >> docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
