@@ -7,3 +7,10 @@ we can use models from hugging face to run locally
 enter token 
     -> hugging face -> profile icon -> access tokens -> craete token -> write access
 3) paste the token in terminal in vscode
+
+INSTALLING TRANSFORMERS
+1) installation 
+>> pip install transformers
+>> pip install torch
+
+** first time running code , model will be downloded. very heavy models
