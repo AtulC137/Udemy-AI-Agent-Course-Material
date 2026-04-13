@@ -1,0 +1,12 @@
+THIS IS A NOTES FILE
+
+1)  INSTALLATION
+>> pip install "fastapi[standard]"
+
+2) RUNNING FASTAPI SERVER
+>> fastapi dev <file name>
+
+3) USING OLLAMA WITH FAST API
+>> pip install ollama
+>> pip freeze > requirments.txt
+
