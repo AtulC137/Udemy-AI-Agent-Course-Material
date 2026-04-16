@@ -1,0 +1,10 @@
+AI AGENT -> LLM + Actions (access db, take calls, read something, make API calls)
+
+Temperature api :
+
+1) take basic llm using api call (open api + gemmi in it)
+
+2) use this free api>>>  https://wttr.in/{city}?format=%C+%t 
+
+3)use request liberery to make a get request on the url.
+
