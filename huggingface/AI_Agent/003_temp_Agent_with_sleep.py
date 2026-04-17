@@ -108,19 +108,66 @@ message_history.append({
     "content":user_input
 })
 
+import time
+
+import time
+from json import loads
+
 while True:
-    response = client.chat.completions.create(model='gemini-2.5-flash',
-    response_format={"type" : "json_object"},
-    messages=message_history)
-    
+    try:
+        response = client.chat.completions.create(
+            model='gemini-2.5-flash',
+            response_format={"type": "json_object"},
+            messages=message_history
+        )
+    except Exception as e:
+        print("⚠️ Rate limit hit, retrying...", e)
+        time.sleep(7)
+        continue
+
     raw_result = response.choices[0].message.content
-    message_history.append({"role" : "assistant", "content" : raw_result})
+    message_history.append({"role": "assistant", "content": raw_result})
 
-    parsed_result = loads(raw_result)
-    if parsed_result.get("step")== "OUTPUT":
-        print("FINAL : ",parsed_result['task']['content'])
+    # Parse JSON safely
+    try:
+        parsed_result = loads(raw_result)
+    except Exception as e:
+        print("❌ JSON parsing error:", e)
         break
-    if parsed_result.get("step") == "PLAN":
-        print("🐮 ",parsed_result['task']['content'])
-    # time.sleep(20)
 
+    step = parsed_result.get("step")
+    task = parsed_result.get("task", {})
+
+    # ✅ FINAL OUTPUT
+    if step == "OUTPUT":
+        print("FINAL:", task.get("content"))
+        break
+
+    # ✅ NORMAL TEXT (PLAN / START)
+    if "content" in task:
+        print("🐮", task["content"])
+
+    # ✅ TOOL CALL
+    elif "tool_name" in task:
+        tool_name = task.get("tool_name")
+        city = task.get("input")
+
+        print(f"🔧 Calling tool: {tool_name} with input: {city}")
+
+        # call your function
+        result = check_weather(city)
+
+        print("🌤️", result)
+
+        # send tool result back to LLM
+        message_history.append({
+            "role": "assistant",
+            "content": result
+        })
+
+    # ✅ TOOL RESPONSE STEP (optional handling)
+    elif "tool_action" in task:
+        print("⚡ Tool returned:", task.get("output"))
+
+    # small delay to avoid rate limit
+    time.sleep(2)
