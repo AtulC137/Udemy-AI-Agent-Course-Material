@@ -85,7 +85,8 @@ def check_weather(city : str):
     else:
         return f"something went wrong, code : {response.status_code}"
 
-def main():
+
+def use_gemini():
     query = input("Query : ")
     response = client.chat.completions.create(
     model = "gemini-2.5-flash",
