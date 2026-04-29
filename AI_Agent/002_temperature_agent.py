@@ -70,21 +70,13 @@ A :
 
 
 load_dotenv() #loads env variables from .env files like OPEN_AI_API variable
+
+# use openai
 api_key = os.getenv("GEMINI_API_KEY")
 client = OpenAI(
     api_key=api_key,  #api key is open
     base_url="https://generativelanguage.googleapis.com/v1beta/"
 )
-
-def check_weather(city : str):
-    url = f"https://wttr.in/{city.lower()}?format=j1"
-    response = requests.get(url)
-    data = response.json()
-    if response.status_code == 200:
-        return f"Weather in {city} : {data["current_condition"][0]["temp_C"]}"
-    else:
-        return f"something went wrong, code : {response.status_code}"
-
 
 def use_gemini():
     query = input("Query : ")
@@ -98,6 +90,21 @@ def use_gemini():
 
 # main()
 # print(check_weather("Mumbai"))
+
+
+
+
+def check_weather(city : str):
+    url = f"https://wttr.in/{city.lower()}?format=j1"
+    response = requests.get(url)
+    data = response.json()
+    if response.status_code == 200:
+        return f"Weather in {city} : {data["current_condition"][0]["temp_C"]}"
+    else:
+        return f"something went wrong, code : {response.status_code}"
+
+
+
 
 message_history = [
     {"role":"system","content":SYSTEM_PROMPT},
